@@ -5,8 +5,8 @@ n: .word 8
 
 .text
 main:
-    la t0, n
-    lw a0, 0(t0)
+    la t0, n     # t0 = the memory address of n, 0x1000 0000
+    lw a0, 0(t0) # a0 = 0(t0) = 8
     jal ra, factorial
 
     addi a1, a0, 0
@@ -22,3 +22,18 @@ main:
 
 factorial:
     # YOUR CODE HERE
+    li s0, 1 # (sum)s0 = 1
+    beq a0, s0, finish #if n = 1, return
+    addi, sp, sp, -8
+    sw ra, 0(sp) # push ra
+    sw a0, 4(sp) # push a0
+    addi a0, a0, -1
+    jal ra, factorial # call factorial(n-1)
+    lw ra, 0(sp) # pop ra
+    lw t0, 4(sp) # pop a0
+    mul a0, a0, t0
+    addi sp, sp, 8
+    
+finish:
+    ret
+    
