@@ -101,7 +101,10 @@ main:
 # a1 is the address of the "output" array (defined above).
 f:
     # YOUR CODE GOES HERE!
-
+    addi a0, a0, 3 # add a0 to the i-th element of the array
+    slli a0, a0, 2 # shift 4 bytes as every element is 4 bytes in the array
+    add a0, a0, a1 # add this offset to the address of the array to get the address of the element
+    lw a0, 0(a0)
     jr ra               # Always remember to jr ra after your function!
 
 # prints out one integer
