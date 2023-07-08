@@ -1,0 +1,1 @@
+10(CLK-to-Q) + 60(Mul) + 45(Add) + 10(setup) = 125ns
